@@ -5,8 +5,12 @@ class VideosController < ApplicationController
   end
 
   def home
+    @comedy= Category.find_by name: 'Comedy'
+    @action= Category.find_by name: 'Action'
+    @drama= Category.find_by name: 'Drama'
+
   end
-  
+
   def show
     @video=Video.find(params[:id])
   end
