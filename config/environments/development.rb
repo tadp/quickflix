@@ -7,8 +7,12 @@ Myflix::Application.configure do
   config.cache_classes = false
 
   # Log error messages when you accidentally call methods on nil.
+<<<<<<< HEAD
   # deprecated in Rails 4.0
   # config.whiny_nils = true
+=======
+  config.whiny_nils = true
+>>>>>>> 65609e9e319ae9d78df44ed7f0e5caa0a322e47f
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
