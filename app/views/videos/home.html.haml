@@ -1,0 +1,7 @@
+%article.video_category
+  %header
+    %h3= link_to "All Videos"
+  .videos.row
+    = @videos.each do |video| 
+      .video.span2
+        =link_to image_tag("/tmp/#{video.title}.jpg"), video_path(video)
