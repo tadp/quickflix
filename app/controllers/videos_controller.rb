@@ -6,7 +6,6 @@ class VideosController < ApplicationController
 
   def home
     @categories=Category.all
-
   end
 
   def show
@@ -17,5 +16,4 @@ class VideosController < ApplicationController
   def set_video
     @videos=Video.all
   end
-
 end
