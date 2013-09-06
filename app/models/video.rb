@@ -5,4 +5,16 @@ class Video < ActiveRecord::Base
   # validates :description, presence: true
   #refactored:
   validates_presence_of :title, :description
+
+  def self.search_by_title(search_term)
+    video_obj=self.where(["title LIKE :search_term", {:search_term => search_term}])
+    video_obj.first.title
+    # binding.pry
+    # self.where(title:'family').pluck(:title)
+
+  end
+
+#   17.2 pluck
+# pluck can be used to query a single or multiple columns from the underlying table of a model. It accepts a list of column names as argument and returns an array of values of the specified columns with the corresponding data type.
+
 end
