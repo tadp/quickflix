@@ -9,12 +9,12 @@ describe Video do
 
   it "search by exact title" do
     family_guy= Video.create(title: "family", description: "A great video!")
-    expect(Video.search_by_title("family")).to eq(family_guy.title)
+    expect(Video.search_by_title("family")).to eq([family_guy])
   end
 
   it "search by semi title" do
     family_guy= Video.create(title: "family guy", description: "A great video!")
-    expect(Video.search_by_title("family")).to eq(family_guy.title)
+    expect(Video.search_by_title("family")).to eq([family_guy])
   end
 
 
