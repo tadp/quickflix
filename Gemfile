@@ -26,3 +26,11 @@ group :production do
 end
 
 gem 'jquery-rails'
+
+group :test do
+  gem 'shoulda-matchers'
+end
+
+group :test, :development do
+  gem 'rspec-rails'
+end

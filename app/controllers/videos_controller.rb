@@ -5,10 +5,7 @@ class VideosController < ApplicationController
   end
 
   def home
-    @comedy= Category.find_by name: 'Comedy'
-    @action= Category.find_by name: 'Action'
-    @drama= Category.find_by name: 'Drama'
-
+    @categories=Category.all
   end
 
   def show
@@ -19,5 +16,4 @@ class VideosController < ApplicationController
   def set_video
     @videos=Video.all
   end
-
 end
