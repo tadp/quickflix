@@ -6,10 +6,10 @@ class UsersController < ApplicationController
  def create
   @user = User.new(user_params)
   if @user.save
-    flash[:error] = "You just registered!"
+    flash[:success] = "You just registered!"
     redirect_to login_path
   else
-    flash[:error] = @user.errors.full_messages
+    flash[:error] = @user.errors.full_messages.join(', ')
     render :new
   end
 

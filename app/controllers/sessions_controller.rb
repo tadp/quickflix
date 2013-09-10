@@ -1,4 +1,8 @@
 class SessionsController < ApplicationController
+  def new
+    redirect_to home_path if current_user
+  end
+
   def create
     user = User.where(email: params[:email]).first
     if user && user.authenticate(params[:password])
@@ -11,7 +15,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[params[:user_id]] = nil
+    session[:user_id] = nil
     redirect_to root_path, notice: "You are signed out."
   end
 
