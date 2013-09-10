@@ -2,6 +2,8 @@ class VideosController < ApplicationController
   before_action :set_video, only: [:index, :home, :show]
 
   def index
+    @categories=Category.all  
+    @video_results=Video.search_by_title(params[:search])
   end
 
   def create
@@ -13,11 +15,6 @@ class VideosController < ApplicationController
   def sign_in
   end
   
-
-  def home
-    @categories=Category.all  
-    @video_results=Video.search_by_title(params[:search])
-  end
 
   def show
     @video=Video.find(params[:id])
