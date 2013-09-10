@@ -7,7 +7,11 @@ class Video < ActiveRecord::Base
   validates_presence_of :title, :description
 
   def self.search_by_title(search_term)
-    video_obj=self.where(["title LIKE :search_term", {:search_term => "%#{search_term}%"}])
+    if search_term.blank?
+      nil
+    else
+    self.where(["title LIKE :search_term", {:search_term => "%#{search_term}%"}])
+    end
 
     # if search_term
     

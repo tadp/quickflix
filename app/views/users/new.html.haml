@@ -1,0 +1,30 @@
+%section.register.container
+  .row
+    .span10.offset1
+      = bootstrap_form_for @user, html: { class: "form-horizontal"} do |f|
+      / The line below was supplanted by the line above
+      / %form.form-horizontal
+      %header
+        %h1 Register
+        %fieldset
+          = f.email_field :email, label: "Email Address"
+          = f.password_field :password
+          = f.text_field :full_name, label: "Full Name"
+
+          / The three lines above replaced all the lines below
+          / .control-group
+          /   %label.control-label Email Address
+          /   .controls
+          /     %input.span3(type="email")
+          / .control-group
+          /   %label.control-label Password
+          /   .controls
+          /     %input.span3(type="password")
+          / .control-group
+          /   %label.control-label Full Name
+          /   .controls
+          /     %input.span3(type="text")
+
+        %fieldset.actions.control-group
+          .controls
+            %input(type="submit" value="Sign Up" class="btn")
