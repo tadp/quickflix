@@ -6,6 +6,8 @@ gem 'railties', '~>4.0.0'
 # gem 'rails', '3.2.11'
 gem 'haml-rails'
 gem 'bootstrap-sass'
+gem 'bootstrap_form'
+gem 'bcrypt-ruby', '3.0.0'
 
 group :assets do
   gem 'sass-rails'
