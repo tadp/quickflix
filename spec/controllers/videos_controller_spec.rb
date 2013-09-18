@@ -21,23 +21,18 @@ describe VideosController do
     get :show, id: video.id
     expect(response).to redirect_to login_path
    end
-
-   it "renders the show template" do
-    video = Fabricate(:video)
-    get :show, id: video.id
-    expect(response).to render_template(:show)
-   end
   end
 
       #Doesn't work
   describe "POST search" do
-      xit "sets @results for authenticated users" do
+      it "sets @results for authenticated users" do
         session[:user_id] = Fabricate(:user).id
-        futurama = Fabricate(:video, title: 'Futurama')
-        post :search, search_term: 'rama'
-        expect(assigns(:results)).to eq([futurama])
+        futurama2 = Fabricate(:video, title: 'Futurama2')
+        post :index, search: 'rama'
+        binding.pry
+        expect(assigns(:video_results)).to eq([futurama2])
       end
-      xit "redirects to sign in page for the unauthenticated users" do
+      it "redirects to sign in page for the unauthenticated users" do
         futurama = Fabricate(:video, title: 'Futurama')
         post :search, search_term: 'rama'
         expect(response).to redirect_to login_path

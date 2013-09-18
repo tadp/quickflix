@@ -11,7 +11,6 @@ Myflix::Application.routes.draw do
       get 'search'
     end
   end
-
   resources :users, only: [:create]
   resources :sessions, only: [:create]
 
