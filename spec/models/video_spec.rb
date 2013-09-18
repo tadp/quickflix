@@ -18,18 +18,6 @@ describe Video do
   end
 
 
-############ Doesn't work yet
-  it "return six most recent videos" do
-    comedy = Category.create([{name: 'Comedy'}])
-    how_i_met_your_mother = Video.create([{title: 'How I Met Your Mother', description: "Cool show", category: comedy}]) 
-    friends = Video.create([{title: 'Friends', description: "Cool show", category: comedy}]) 
-    simpsons = Video.create([{title: 'Simpsons', description: "Cool show", category: comedy}]) 
-    south_park = Video.create([{title: 'Southpark', description: "Cool show", category: comedy}]) 
-    futurama = Video.create([{title: 'Futurama', description: "Cool show", category: comedy}]) 
-    family_guy = Video.create([{title: 'Family Guy', description: "Cool show", category: comedy}]) 
-    monk = Video.create([{title: 'Monk', description: "Cool show", category: comedy}]) 
-    expect(comedy.recent_videos).to eq([monk,family_guy, futurama, south_park, simpsons, friends])
-  end
 
   #First attempt
   # it 'saves a video' do

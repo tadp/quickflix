@@ -10,7 +10,7 @@ class Video < ActiveRecord::Base
     if search_term.blank?
       nil
     else
-    self.where(["title LIKE :search_term", {:search_term => "%#{search_term}%"}])
+    self.where(["title LIKE :search_term", {:search_term => "%#{search_term}%"}]).order("created_at DESC")
     end
 
     # if search_term
