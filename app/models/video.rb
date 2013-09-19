@@ -1,4 +1,5 @@
 class Video < ActiveRecord::Base
+  has_many :reviews, order:"created_at DESC"
   has_many :video_categories
   has_many :categories, through: :video_categories, order: :name
   # validates :title, presence: true
@@ -10,7 +11,7 @@ class Video < ActiveRecord::Base
     if search_term.blank?
       nil
     else
-    self.where(["title LIKE :search_term", {:search_term => "%#{search_term}%"}])
+    self.where(["title LIKE :search_term", {:search_term => "%#{search_term}%"}]).order("created_at DESC")
     end
 
     # if search_term
@@ -26,6 +27,14 @@ class Video < ActiveRecord::Base
     # end
   end
 
+  def average_rating
+    if reviews.any?
+      sum= reviews.map{ |n| n.rating}.inject(:+)
+      average = (sum.to_f / reviews.count).round(1)
+    else
+      0.0
+    end
+  end
 #   17.2 pluck
 # pluck can be used to query a single or multiple columns from the underlying table of a model. It accepts a list of column names as argument and returns an array of values of the specified columns with the corresponding data type.
 

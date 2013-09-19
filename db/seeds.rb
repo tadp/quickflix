@@ -42,3 +42,7 @@ vampire_diaries.categories << action
 
 vampire_diaries.categories << drama
 monk.categories << drama
+
+bob = User.create(full_name: "Bob Jones", password: "password", email: "bob@example.com")
+Review.create(user: bob, video: monk, rating: 5, content: "This is a really good show!")
+Review.create(user: bob, video: monk, rating: 3, content: "This an ok show.")

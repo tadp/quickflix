@@ -4,31 +4,35 @@ require 'pry'
 describe Video do
   #Same validation as below using shoulda matchers
   it { should have_many(:categories)}
+  it { should have_many(:reviews)}
+  # Rails 4 shoulda support?
+  #   it { should have_many(:reviews).order("created_at DESC")}
   it { should validate_presence_of(:title)}
   it { should validate_presence_of(:description)}
 
-  it "search by exact title" do
-    family_guy= Video.create(title: "family", description: "A great video!")
-    expect(Video.search_by_title("family")).to eq([family_guy])
-  end
+  describe "search_by_title" do
+    it "returns an empty array if there is no match" do
+      futurama = Video.create(title: "Futurama", description: "Space Travel!")
+      back_to_future = Video.create(title: "Back to Future", description: "Time Travel!")
+      expect(Video.search_by_title("hello")).to eq([])
+    end
 
-  it "search by semi title" do
-    family_guy= Video.create(title: "family guy", description: "A great video!")
-    expect(Video.search_by_title("family")).to eq([family_guy])
-  end
+    it "returns an array of one video for an exact match" do
+      futurama = Video.create(title: "Futurama", description: "Space Travel!")
+      back_to_future = Video.create(title: "Back to Future", description: "Time Travel!")
+      expect(Video.search_by_title("Futurama")).to eq([futurama])
+    end
 
+    it "returns an array of all matches ordered by created_at" do 
+      futurama = Video.create(title: "Futurama", description: "Space Travel!", created_at: 1.day.ago)
+      back_to_future = Video.create(title: "Back to Future", description: "Time Travel!")
+      expect(Video.search_by_title("Futur")).to eq([back_to_future, futurama])
+    end
 
-############ Doesn't work yet
-  it "return six most recent videos" do
-    comedy = Category.create([{name: 'Comedy'}])
-    how_i_met_your_mother = Video.create([{title: 'How I Met Your Mother', description: "Cool show", category: comedy}]) 
-    friends = Video.create([{title: 'Friends', description: "Cool show", category: comedy}]) 
-    simpsons = Video.create([{title: 'Simpsons', description: "Cool show", category: comedy}]) 
-    south_park = Video.create([{title: 'Southpark', description: "Cool show", category: comedy}]) 
-    futurama = Video.create([{title: 'Futurama', description: "Cool show", category: comedy}]) 
-    family_guy = Video.create([{title: 'Family Guy', description: "Cool show", category: comedy}]) 
-    monk = Video.create([{title: 'Monk', description: "Cool show", category: comedy}]) 
-    expect(comedy.recent_videos).to eq([monk,family_guy, futurama, south_park, simpsons, friends])
+    it "searches by semi title" do
+        family_guy= Video.create(title: "family guy", description: "A great video!")
+        expect(Video.search_by_title("family")).to eq([family_guy])
+    end
   end
 
   #First attempt

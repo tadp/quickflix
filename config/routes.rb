@@ -8,10 +8,10 @@ Myflix::Application.routes.draw do
   resources :categories
   resources :videos, only: [:show] do
     collection do
-      get 'search'
+      post 'search'
     end
+    resources :reviews, only: [:create]
   end
-
   resources :users, only: [:create]
   resources :sessions, only: [:create]
 

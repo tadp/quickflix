@@ -21,6 +21,9 @@ module Myflix
     config.generators do |g|
       g.orm :active_record
       g.template_engine :haml
+      g.factory_girl false
     end
   end
+
+
 end
