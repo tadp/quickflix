@@ -7,17 +7,30 @@ describe Video do
   it { should validate_presence_of(:title)}
   it { should validate_presence_of(:description)}
 
-  it "search by exact title" do
-    family_guy= Video.create(title: "family", description: "A great video!")
-    expect(Video.search_by_title("family")).to eq([family_guy])
+  describe "search_by_title" do
+    it "returns an empty array if there is no match" do
+      futurama = Video.create(title: "Futurama", description: "Space Travel!")
+      back_to_future = Video.create(title: "Back to Future", description: "Time Travel!")
+      expect(Video.search_by_title("hello")).to eq([])
+    end
+
+    it "returns an array of one video for an exact match" do
+      futurama = Video.create(title: "Futurama", description: "Space Travel!")
+      back_to_future = Video.create(title: "Back to Future", description: "Time Travel!")
+      expect(Video.search_by_title("Futurama")).to eq([futurama])
+    end
+
+    it "returns an array of all matches ordered by created_at" do 
+      futurama = Video.create(title: "Futurama", description: "Space Travel!", created_at: 1.day.ago)
+      back_to_future = Video.create(title: "Back to Future", description: "Time Travel!")
+      expect(Video.search_by_title("Futur")).to eq([back_to_future, futurama])
+    end
+
+    it "searches by semi title" do
+        family_guy= Video.create(title: "family guy", description: "A great video!")
+        expect(Video.search_by_title("family")).to eq([family_guy])
+    end
   end
-
-  it "search by semi title" do
-    family_guy= Video.create(title: "family guy", description: "A great video!")
-    expect(Video.search_by_title("family")).to eq([family_guy])
-  end
-
-
 
   #First attempt
   # it 'saves a video' do

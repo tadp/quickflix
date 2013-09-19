@@ -4,7 +4,7 @@ class VideosController < ApplicationController
 
   def index
     @categories=Category.all  
-    @video_results=Video.search_by_title(params[:search])
+    @video_results=Video.search_by_title(params[:search_term])
   end
 
   # def create
@@ -21,7 +21,7 @@ class VideosController < ApplicationController
   end
 
   def search
-    @video = Video.search_by_title(params[:search_term])
+    @video_results = Video.search_by_title(params[:search_term])
   end
 
   private
