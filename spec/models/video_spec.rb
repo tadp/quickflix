@@ -4,6 +4,9 @@ require 'pry'
 describe Video do
   #Same validation as below using shoulda matchers
   it { should have_many(:categories)}
+  it { should have_many(:reviews)}
+  # Rails 4 shoulda support?
+  #   it { should have_many(:reviews).order("created_at DESC")}
   it { should validate_presence_of(:title)}
   it { should validate_presence_of(:description)}
 

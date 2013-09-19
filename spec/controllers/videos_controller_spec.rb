@@ -8,12 +8,21 @@ describe VideosController do
     #    session[:user_id] = Fabricate(:user).id
     #  end 
     # end
-
     it "sets @video for authenticated users" do
       session[:user_id] = Fabricate(:user).id
       video = Fabricate(:video)
       get :show, id: video.id
       expect(assigns(:video)).to eq(video)
+    end
+
+    it "sets @reviews for authenticated users" do
+      session[:user_id] = Fabricate(:user).id
+      video = Fabricate(:video)
+      review1 = Fabricate(:review, video: video)
+      review2 = Fabricate(:review, video: video)
+      get :show, id: video.id
+      expect(assigns(:reviews)).to match_array([review1, review2])
+      # assigns(:reviews).should =~ [review1, review2]
     end
 
     it "redirects the user to the sign in page for unauthenticated users" do
@@ -35,6 +44,7 @@ describe VideosController do
         post :index, search_term: 'rama'
         expect(response).to redirect_to login_path
       end
+      
     #This tests a Rails convention so we should remove it.
     # it "renders the show template"  do
     #     video = Fabricate(:video)
