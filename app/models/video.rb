@@ -27,6 +27,14 @@ class Video < ActiveRecord::Base
     # end
   end
 
+  def average_rating
+    if reviews.any?
+      sum= reviews.map{ |n| n.rating}.inject(:+)
+      average = (sum.to_f / reviews.count).round(1)
+    else
+      0.0
+    end
+  end
 #   17.2 pluck
 # pluck can be used to query a single or multiple columns from the underlying table of a model. It accepts a list of column names as argument and returns an array of values of the specified columns with the corresponding data type.
 
