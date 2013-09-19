@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :ratings
   validates_presence_of :email, :password, :full_name
   validates_uniqueness_of :email
   validates :password, confirmation: false
