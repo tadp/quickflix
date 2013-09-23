@@ -75,8 +75,9 @@ describe QueueItemsController do
 
   describe "DELETE destroy" do
     it "redirects to the my queue page" do
-      session[:user_id]= Fabricate(:user).id
-      queue_item = Fabricate(:queue_item)
+      alice = Fabricate(:user)
+      session[:user_id]= alice.id
+      queue_item = Fabricate(:queue_item, user_id: alice.id)
       delete :destroy, id: queue_item.id
       expect(response).to redirect_to my_queue_path
     end
@@ -96,6 +97,19 @@ describe QueueItemsController do
       delete :destroy, id: queue_item.id
       expect(QueueItem.count).to eq(1)
     end
+
+     it "should re-number remaining records with correct positions" do
+        alice = Fabricate(:user)
+        session[:user_id] = alice.id
+        video1 = Fabricate(:video)
+        video2 = Fabricate(:video)
+        queue_item1 = Fabricate(:queue_item, video_id: video1, list_order: 1, user_id: alice.id)
+        queue_item2 = Fabricate(:queue_item, video_id: video2, list_order: 2, user_id: alice.id)
+
+        get :destroy, id: queue_item1.id
+        alice.queue_items.first.list_order.should == 1
+     end
+
     it "redirects to the sign in page for unauthenticated users" do
       delete :destroy, id: 3
       expect(response).to redirect_to login_path
