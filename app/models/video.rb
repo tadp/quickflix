@@ -14,6 +14,10 @@ class Video < ActiveRecord::Base
     self.where(["title LIKE :search_term", {:search_term => "%#{search_term}%"}]).order("created_at DESC")
     end
 
+    #   17.2 pluck
+    # pluck can be used to query a single or multiple columns from the underlying table of a model. It accepts a list of column names as argument and returns an array of values of the specified columns with the corresponding data type.
+
+
     # if search_term
     
     # self.where(["title LIKE :search_term", {:search_term => "%#{search_term}%"}])
@@ -35,8 +39,6 @@ class Video < ActiveRecord::Base
       0.0
     end
   end
-#   17.2 pluck
-# pluck can be used to query a single or multiple columns from the underlying table of a model. It accepts a list of column names as argument and returns an array of values of the specified columns with the corresponding data type.
 
 
 end

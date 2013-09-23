@@ -12,14 +12,11 @@ class UsersController < ApplicationController
     flash[:error] = @user.errors.full_messages.join(', ')
     render :new
   end
-
  end
 
-
 private
-
-def user_params
-  params.require(:user).permit(:email, :password, :full_name)
-end
+  def user_params
+    params.require(:user).permit(:email, :password, :full_name)
+  end
 
 end

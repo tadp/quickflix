@@ -3,6 +3,8 @@ require 'pry'
 
 describe Category do
   it { should have_many(:videos) }
+  it { should validate_presence_of(:name) }
+  
   # it 'associate with videos' do
   #   category=Category.create(name:'Action')
   #   video= Video.create(title:'First_title', description:'A great description')
