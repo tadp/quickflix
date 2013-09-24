@@ -22,8 +22,8 @@ class QueueItemsController < ApplicationController
 
   def update_queue
     begin
-      update_queue_items
-      current_user.reorder_queue_items
+     update_queue_items
+     current_user.reorder_queue_items
       rescue ActiveRecord::RecordInvalid  #5.1:32:06
         flash[:error] = "Invalid position numbers."
       end
@@ -48,7 +48,7 @@ class QueueItemsController < ApplicationController
     ActiveRecord::Base.transaction do
       params[:queue_items].each do |queue_item_data|
         queue_item = QueueItem.find(queue_item_data[:id])
-        queue_item.update_attributes!(list_order: queue_item_data[:list_order]) if queue_item.user == current_user #mod 5.1 "!" raise exception for transaction
+        queue_item.update_attributes!(list_order: queue_item_data[:list_order], rating: queue_item_data["rating"]) if queue_item.user == current_user #mod 5.1 "!" raise exception for transaction
       end
     end
   end
