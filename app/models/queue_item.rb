@@ -1,7 +1,9 @@
+
 class QueueItem < ActiveRecord::Base
   belongs_to :video
   belongs_to :user
 
+  validates_numericality_of :list_order, {only_integer: true} #mod5-1,half
   delegate :title, to: :video, prefix: :video
 
   # This is replaced with delegation
