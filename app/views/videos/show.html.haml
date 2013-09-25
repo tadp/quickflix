@@ -20,7 +20,7 @@
       %form
         %fieldset
           %label Rate this video
-          =f.select :rating, options_for_select((1..5).to_a.reverse!.map{ |number| [pluralize(number, "Star")]})
+          =f.select :rating, options_for_video_reviews #refactored to Application helper
           / %select(name="")
           /   %option(value="5") 5 Stars
           /   %option(value="4") 4 Stars
