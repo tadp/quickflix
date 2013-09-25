@@ -13,18 +13,17 @@ class QueueItem < ActiveRecord::Base
   # end
 
   def rating
-    review = Review.where(user_id: user.id, video_id: video.id).first
     review.rating if review
     # video.reviews.first.try(:rating)
   end
 
   # Virtual attribute for ActiveRecord model. mod 5.3
   def rating=(new_rating)
-    review = Review.where(user_id: user.id, video_id: video.id).first
     if review
       review.update_column(:rating, new_rating)
     else
-      Review.create(user: user, video: video, rating: new_rating)
+      review = Review.new(user_id: user.id, video_id: video.id, rating: new_rating)
+      review.save(validate: false)
     end
   end
 
@@ -32,6 +31,11 @@ class QueueItem < ActiveRecord::Base
     video.categories.first.name
   end
 
+  private
+
+  def review
+    @review ||= Review.where(user_id: user.id, video_id: video.id).first
+  end
 
 
 end

@@ -23,8 +23,7 @@
                     = link_to queue_item.video_title, queue_item.video
                   %td
                     = button_to "Play", nil, class: "btn"
-                  %td
-                    = select_tag "queue_items[][rating]", options_for_video_reviews(queue_item.rating),include_blank: true
+                  %td= select_tag "queue_items[][rating]", options_for_video_reviews(queue_item.rating), include_blank: true
                   / before-refactor:
                   / %select(name="queue_items[][rating]")
                   / = options_for_select([[],['5 Stars', 5], ['4 Stars', 4], ['3 Stars', 3], ['2 Stars', 2], ['1 Star', 1]], queue_item.rating)
