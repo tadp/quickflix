@@ -22,8 +22,6 @@ end
 
 group :development do
   gem 'sqlite3'
-  gem 'pry'
-  gem 'pry-nav'
 end
 
 group :production do
@@ -34,8 +32,11 @@ gem 'jquery-rails'
 
 group :test do
   gem 'shoulda-matchers'
+  gem 'capybara'
 end
 
 group :test, :development do
   gem 'rspec-rails'
+  gem 'pry'
+  gem 'pry-nav'
 end
