@@ -11,7 +11,7 @@
         .actions
           %a.btn.btn-primary(href="") Watch Now
           / %a.btn(href="") + My Queue
-          = link_to "+ My Queue", queue_items_path(video_id: @video.id), method: :post, class: 'btn'
+          = link_to "+ My Queue", queue_items_path(video_id: @video.id), method: :post, class: 'btn' unless current_user.queued_video?(@video)
 
 %section.reviews.container
   .row
@@ -41,6 +41,7 @@
             %li.row
               .span2
                 %span Rating: #{review.rating} / 5
-                %p by <a href="">#{review.user.full_name}</a>
+                %p by 
+                = link_to review.user.full_name, review.user 
               .span8
                 %p= review.content

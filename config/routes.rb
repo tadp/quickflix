@@ -9,6 +9,9 @@ Myflix::Application.routes.draw do
     resources :reviews, only: [:create]
   end
 
+  resources :relationships, only: [:create, :destroy]
+  get 'people', to: 'relationships#index'
+
   resources :categories, only: [:show]
   resources :queue_items, only: [:create, :destroy]
   post 'update_queue', to: 'queue_items#update_queue'
@@ -19,9 +22,10 @@ Myflix::Application.routes.draw do
   get '/logout', to: 'sessions#destroy'
   get '/my_queue', to: 'queue_items#index'
 
+
   resources :categories
 
-  resources :users, only: [:create]
+  resources :users, only: [:create, :show]
   resources :sessions, only: [:create]
 
 end

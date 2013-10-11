@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'pry'
 
 describe UsersController do
   describe "GET new" do
@@ -25,7 +24,6 @@ describe UsersController do
     end
 
     context "with invalid input" do
-      
       before do
        post :create, user: { email: "test@example.com", full_name: "Bob Jones" }
       end
@@ -42,6 +40,21 @@ describe UsersController do
         expect(assigns(:user)).to be_instance_of(User)
       end
     end
+  end
+
+  describe "GET show" do
+
+    it_behaves_like "requires sign in" do
+      let(:action) { get :show, id: 3}
+    end
+
+    it "sets @user" do
+      set_current_user
+      alice = Fabricate(:user)
+      get :show, id: alice.id
+      expect(assigns(:user)).to eq(alice)
+    end
+
   end
 
 end
