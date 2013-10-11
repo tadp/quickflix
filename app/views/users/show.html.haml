@@ -3,18 +3,18 @@
     .span10.offset1
       %article
         %header
-          %img(src="http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@user.email || 'none')}?s=40")
-          %h2 #{User.where(user_id=params[:id]).first.full_name}'s video collections (#{User.where(user_id=params[:id]).first.queue_items.count})
-          %button.btn Follow
+          %img(src="http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(@user.email.downcase)}?s=40")
+          %h2 #{@user.full_name}'s video collections (#{@user.queue_items.count})
+          / %button.btn Follow
+          = link_to "Follow", relationships_path(leader_id: @user.id), class: "btn", method: :post if current_user.can_follow?(@user)
         %table.table
           %thead
             %tr
               %th(width="30%") Video Title
               %th(width="15%") Genre
           %tbody
-          - @queue_items.each do |queue_item|
+          - @user.queue_items.each do |queue_item|
             %tr
-              = hidden_field_tag "queue_items[][id]", queue_item.id
               %td
                 = link_to queue_item.video_title, queue_item.video
               %td
@@ -25,14 +25,14 @@
   .row
     .span10.offset1
       %header
-        %h3 #{User.where(user_id=params[:id]).first.full_name}'s Reviews (#{User.where(user_id=params[:id]).first.reviews.count})
+        %h3 #{@user.full_name}'s Reviews (#{@user.reviews.count})
       %ul
-        - @reviews.each do |review|
+        - @user.reviews.each do |review|
           %article.review
             %li.row
               .span2
                 %p
-                  = link_to review.video.title
+                  = link_to review.video.title, review.video
                 %span Rating: #{review.rating} / 5
               .span8
                 %p=review.video.description
