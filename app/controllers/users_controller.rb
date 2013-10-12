@@ -6,7 +6,9 @@ class UsersController < ApplicationController
 
  def create
   @user = User.new(user_params)
+  body = "This is a body"
   if @user.save
+	  AppMailer.send_welcome_email(@user,body).deliver
     flash[:success] = "You just registered!"
     redirect_to login_path
   else

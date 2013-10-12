@@ -23,6 +23,14 @@ Myflix::Application.routes.draw do
   get '/my_queue', to: 'queue_items#index'
 
 
+  # Forgot passwords is a virtual resource mod8
+  get 'forgot_password', to: 'forgot_passwords#new'
+  get 'forgot_password_confirmation', to: 'forgot_passwords#confirm'
+  resources :forgot_passwords, only: [:create]
+
+  resources :password_resets, only: [:show, :create]
+  get 'expired_token', to: 'password_resets#expired_token'
+
   resources :categories
 
   resources :users, only: [:create, :show]

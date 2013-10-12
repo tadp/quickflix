@@ -1,4 +1,7 @@
 Myflix::Application.configure do
+  # http://stackoverflow.com/questions/18742779/actionviewtemplateerror-missing-host-to-link-to
+  Rails.application.routes.default_url_options[:host] = '???'
+
   # Settings specified here will take precedence over those in config/application.rb
 
   # The test environment is used exclusively to run your application's
