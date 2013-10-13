@@ -8,7 +8,7 @@ feature 'User signs in' do
     fill_in "Email Address", with: alice.email
     fill_in "Password", with: alice.password
     click_button "Sign in"
-    page.should have_content alice.full_name.split.map(&:capitalize).join(' ')
+    page.should have_content "Welcome"
   end
 end
 
