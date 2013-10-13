@@ -6,8 +6,14 @@ class UsersController < ApplicationController
 
  def create
   @user = User.new(user_params)
-  body = "This is a body"
+  body = "Welcome"
   if @user.save
+    if params[:invitation_token].present?
+      invitation = Invitation.where(token: params[:invitation_token]).first
+      @user.follow(invitation.inviter)
+      invitation.inviter.follow(@user)
+      invitation.update_column(:token, nil)
+    end
 	  AppMailer.send_welcome_email(@user,body).deliver
     flash[:success] = "You just registered!"
     redirect_to login_path
@@ -20,6 +26,18 @@ class UsersController < ApplicationController
  def show
   @user = User.find(params[:id])
  end
+
+  # mod 9.2 37:00
+  def new_with_invitation_token
+    invitation = Invitation.where(token: params[:token]).first
+    if invitation
+      @user = User.new(email: invitation.recipient_email)
+      @invitation_token = params[:token]
+      render :new
+    else
+      redirect_to expired_token_path
+    end
+  end
 
 private
   def user_params
