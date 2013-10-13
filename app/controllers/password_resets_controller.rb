@@ -8,8 +8,6 @@ class PasswordResetsController < ApplicationController
     end
   end
 
-  def expired_token
-  end
 
   def create
     user = User.where(token: params[:token]).first

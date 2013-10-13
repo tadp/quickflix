@@ -8,12 +8,7 @@ class UsersController < ApplicationController
   @user = User.new(user_params)
   body = "Welcome"
   if @user.save
-    if params[:invitation_token].present?
-      invitation = Invitation.where(token: params[:invitation_token]).first
-      @user.follow(invitation.inviter)
-      invitation.inviter.follow(@user)
-      invitation.update_column(:token, nil)
-    end
+    handle_invitation
 	  AppMailer.send_welcome_email(@user,body).deliver
     flash[:success] = "You just registered!"
     redirect_to login_path
@@ -43,5 +38,15 @@ private
   def user_params
     params.require(:user).permit(:email, :password, :full_name)
   end
+
+  def handle_invitation
+    if params[:invitation_token].present?
+    invitation = Invitation.where(token: params[:invitation_token]).first
+    @user.follow(invitation.inviter)
+    invitation.inviter.follow(@user)
+    invitation.update_column(:token, nil)
+    end
+  end
+
 
 end
