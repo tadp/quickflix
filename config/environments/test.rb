@@ -1,6 +1,6 @@
 Myflix::Application.configure do
   # http://stackoverflow.com/questions/18742779/actionviewtemplateerror-missing-host-to-link-to
-  Rails.application.routes.default_url_options[:host] = '???'
+  # Rails.application.routes.default_url_options[:host] = '???'
 
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -31,6 +31,7 @@ Myflix::Application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
+  config.action_mailer.default_url_options= { host: 'localhost:3000'}
 
   # Raise exception on mass assignment protection for Active Record models
   config.active_record.mass_assignment_sanitizer = :strict

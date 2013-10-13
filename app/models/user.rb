@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   #Mod7.2 12:00
   has_many :following_relationships, class_name: "Relationship", foreign_key: :follower_id
   has_many :leading_relationships, class_name: "Relationship", foreign_key: :leader_id
-
+  has_many :invitations
 
   validates_presence_of :email, :password, :full_name
   validates_uniqueness_of :email
