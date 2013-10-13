@@ -1,4 +1,7 @@
+# require_relative '../../lib/tokenable'
 class User < ActiveRecord::Base
+  include Tokenable
+
   has_many :reviews, order: "created_at DESC"
   has_many :queue_items, order: :list_order
   #Mod7.2 12:00
@@ -12,7 +15,8 @@ class User < ActiveRecord::Base
   validates :password, confirmation: false
   has_secure_password validations: false
 
-  before_create :generate_token
+  # Extracted to concern
+  # before_create :generate_token
 
   def reorder_queue_items
     queue_items.each_with_index do |queue_item,index|
@@ -36,8 +40,8 @@ class User < ActiveRecord::Base
     !(follows?(another_user) || self == another_user)
   end
 
-  def generate_token
-    self.token = SecureRandom.urlsafe_base64
-  end
+  # def generate_token
+  #   self.token = SecureRandom.urlsafe_base64
+  # end
 
 end
