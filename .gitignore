@@ -15,4 +15,4 @@
 /tmp
 
 # Ignore yaml files
-/config/*.yml
+# /config/*.yml
