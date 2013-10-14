@@ -27,7 +27,7 @@ end
 
 group :production do
   gem 'pg'
-  ruby '2.0.0'
+  ruby '1.9.3'
 end
 
 gem 'jquery-rails'
