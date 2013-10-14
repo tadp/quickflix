@@ -14,5 +14,5 @@
 /log/*.log
 /tmp
 
-# Ignore yaml files
-# /config/*.yml
+# Ignore application configuration
+/config/application.yml
