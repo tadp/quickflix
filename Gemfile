@@ -26,9 +26,9 @@ group :development do
 end
 
 group :production do
+  gem 'newrelic_rpm'
   gem 'pg'
   gem 'rails_12factor'
-  ruby '1.9.3'
 end
 
 gem 'jquery-rails'
