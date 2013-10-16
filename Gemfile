@@ -12,6 +12,7 @@ gem 'fabrication'
 gem 'faker'
 gem 'factory_girl_rails'
 gem 'unicorn'
+gem 'foreman'
 
 group :assets do
   gem 'sass-rails'
