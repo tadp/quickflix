@@ -5,6 +5,8 @@ timeout 15
 preload_app true
 
 before_fork do |server, worker|
+  #Free background jobs on heroku : https://coderwall.com/p/fprnhg
+  @sidekiq_pid ||= spawn("bundle exec sidekiq -c 2")
   Signal.trap 'TERM' do
     puts 'Unicorn master intercepting TERM and sending myself QUIT instead'
     Process.kill 'QUIT', Process.pid
