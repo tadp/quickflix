@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   body = "Welcome"
   if @user.save
     handle_invitation
-	  AppMailer.send_welcome_email(@user,body).deliver
+	  AppMailer.delay.send_welcome_email(@user,body)
     flash[:success] = "You just registered!"
     redirect_to login_path
   else

@@ -11,7 +11,7 @@ gem 'bcrypt-ruby', '3.0.0'
 gem 'fabrication'
 gem 'faker'
 gem 'factory_girl_rails'
-# gem 'sidekiq'
+gem 'unicorn'
 
 group :assets do
   gem 'sass-rails'
@@ -30,6 +30,9 @@ group :production do
   gem 'newrelic_rpm'
   gem 'pg'
   gem 'rails_12factor'
+  gem 'sidekiq'
+  gem 'sinatra', require: false
+  gem 'slim'
 end
 
 gem 'jquery-rails'
@@ -45,4 +48,5 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'pry'
   gem 'pry-nav'
+  gem 'rack-mini-profiler'
 end
