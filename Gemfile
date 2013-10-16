@@ -11,8 +11,11 @@ gem 'bcrypt-ruby', '3.0.0'
 gem 'fabrication'
 gem 'faker'
 gem 'factory_girl_rails'
-gem 'unicorn'
-gem 'foreman'
+platforms :ruby do
+  gem 'unicorn'
+  gem 'foreman'
+end
+
 
 group :assets do
   gem 'sass-rails'

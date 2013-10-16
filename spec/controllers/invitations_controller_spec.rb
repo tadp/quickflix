@@ -65,7 +65,6 @@ describe InvitationsController do
         expect(Invitation.count).to eq(0)
       end
       it "does not send out an email" do
-
         set_current_user
         post :create, invitation: {recipient_email: "joe@example.com", message: "Hey join Myflix!"}
         expect(ActionMailer::Base.deliveries).to be_empty
@@ -81,38 +80,6 @@ describe InvitationsController do
         expect(assigns(:invitation)).to be_present
       end
     end
-
-
-    # context "with valid inputs" do
-    #   xit "redirects to My Queue after submit" do
-    #     alice = Fabricate(:user)
-    #     sign_in(alice)
-    #     visit invitation_path
-    #     post :create, name: "Bobby Jones", email: "bobby@example.com", message: "Come join us!"
-    #     expect(response).to redirect_to my_queue_path
-    #   end
-
-    #   it "allows the user to register" do
-    #   end
-    # end
-
-    # context "sending emails" do
-    #   after { ActionMailer::Base.deliveries.clear }
-
-    #   xit "contains the user's name with valid inputs" do
-    #     alice = Fabricate(:user)
-    #     sign_in(alice)
-    #     visit invitation_path
-    #     post :create, { name: "Joe Smith", email: alice.email, message: "Come join us!"}
-    #     expect(ActionMailer::Base.deliveries.last.body).to include('Come join us!') 
-    #   end
-
-    #   xit "does not send out email (with invalid inputs)" do
-    #     alice = Fabricate(:user)
-    #     post :create,{ email: "joe_not_send@example.com" }
-    #     expect(ActionMailer::Base.deliveries).to be_empty
-    #   end
-    # end
 
   end
 end
