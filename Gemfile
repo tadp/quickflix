@@ -11,6 +11,7 @@ gem 'bcrypt-ruby', '3.0.0'
 gem 'fabrication'
 gem 'faker'
 gem 'factory_girl_rails'
+# gem 'sidekiq'
 
 group :assets do
   gem 'sass-rails'
