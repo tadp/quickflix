@@ -27,7 +27,7 @@ after_fork do |server, worker|
   end
 
   Sidekiq.configure_server do |config|
-    config.redis = { :size => 3 }
+    config.redis = { :size => 5 }
   end
 
   defined?(ActiveRecord::Base) and
