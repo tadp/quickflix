@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   @user = User.find(params[:id])
  end
 
-  # mod 9.2 37:00
+# mod 9.2 37:00
   def new_with_invitation_token
     invitation = Invitation.where(token: params[:token]).first
     if invitation
@@ -33,6 +33,7 @@ class UsersController < ApplicationController
       redirect_to expired_token_path
     end
   end
+
 
 private
   def user_params

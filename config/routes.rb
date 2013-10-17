@@ -27,7 +27,10 @@ Myflix::Application.routes.draw do
   get '/logout', to: 'sessions#destroy'
   get '/my_queue', to: 'queue_items#index'
 
-
+  #mod 11.1 namespacing
+  namespace :admin do
+    resources :videos, only: [:new, :create]
+  end
 
   # Forgot passwords is a virtual resource mod8
   get 'forgot_password', to: 'forgot_passwords#new'
