@@ -74,7 +74,7 @@ config.action_mailer.smtp_settings = {
   port:                 587,
   domain:               'myflix-test.mailgun.org',
   user_name:            'postmaster@myflix-test.mailgun.org',
-  password:             '4n4pkdjr24e9',
+  password:             'ENV['MAILGUN_PASSWORD']',
   authentication:       'plain',
   enable_starttls_auto: true  }
 end

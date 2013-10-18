@@ -13,8 +13,9 @@ gem 'faker'
 gem 'factory_girl_rails'
 platforms :ruby do
   gem 'unicorn'
-  gem 'foreman'
 end
+gem 'carrierwave'
+gem 'mini_magick', '3.5.0'
 
 group :assets do
   gem 'sass-rails'
@@ -53,4 +54,5 @@ group :test, :development do
   gem 'pry-nav'
   gem 'rack-mini-profiler'
   gem 'sidekiq'
+  gem 'foreman'
 end
