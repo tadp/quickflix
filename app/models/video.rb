@@ -6,6 +6,7 @@ class Video < ActiveRecord::Base
   # validates :description, presence: true
   #refactored:
   validates_presence_of :title, :description
+  validates_presence_of :categories
 
   def self.search_by_title(search_term)
     if search_term.blank?

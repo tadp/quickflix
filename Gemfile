@@ -16,7 +16,6 @@ platforms :ruby do
   gem 'foreman'
 end
 
-
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
@@ -53,4 +52,5 @@ group :test, :development do
   gem 'pry'
   gem 'pry-nav'
   gem 'rack-mini-profiler'
+  gem 'sidekiq'
 end

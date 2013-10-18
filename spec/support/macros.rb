@@ -26,3 +26,5 @@ def click_video_on_home_page(video)
   find("a[href='/videos/#{video.id}']").click
 end
 
+
+
