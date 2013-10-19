@@ -16,7 +16,7 @@ platforms :ruby do
 end
 gem 'carrierwave'
 gem 'mini_magick', :git => 'git://github.com/minimagick/minimagick.git', :ref => '6d0f8f953112cce6324a524d76c7e126ee14f392'
-
+gem 'sidekiq'
 
 group :assets do
   gem 'sass-rails'
@@ -37,9 +37,9 @@ group :production do
   gem 'newrelic_rpm'
   gem 'pg'
   gem 'rails_12factor'
-  gem 'sidekiq'
   gem 'sinatra', require: false
   gem 'slim'
+  gem 'fog'
 end
 
 gem 'jquery-rails'
@@ -56,6 +56,5 @@ group :test, :development do
   gem 'pry'
   gem 'pry-nav'
   gem 'rack-mini-profiler'
-  gem 'sidekiq'
   gem 'foreman'
 end

@@ -1,0 +1,17 @@
+%section.admin_add_video
+  .container
+    .row
+      .span10.offset1
+        = bootstrap_form_for [:admin, @category], html:{class: "form-horizontal"} do |f|
+          %ul.nav.nav-tabs
+            %li
+              %a(href="/ui/admin_views_payments") Recent Payments
+            %li
+              =link_to "Add a New Video", new_admin_video_path
+            %li.active
+              =link_to "Add Categories", new_admin_category_path
+          %fieldset
+            = f.text_field :name, class: "span 3"
+          %fieldset.actions.control-group
+            .controls
+              %input(type="submit" value="Add Category" class="btn btn-success")

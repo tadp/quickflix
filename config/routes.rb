@@ -15,9 +15,9 @@ Myflix::Application.routes.draw do
   get 'people', to: 'relationships#index'
 
   resources :categories, only: [:show]
-  resources :categories
 
   resources :queue_items, only: [:create, :destroy]
+
   post 'update_queue', to: 'queue_items#update_queue'
 
   get 'ui(/:action)', controller: 'ui'
@@ -30,6 +30,7 @@ Myflix::Application.routes.draw do
   #mod 11.1 namespacing
   namespace :admin do
     resources :videos, only: [:new, :create]
+    resources :categories, only: [:new, :create]
   end
 
   # Forgot passwords is a virtual resource mod8

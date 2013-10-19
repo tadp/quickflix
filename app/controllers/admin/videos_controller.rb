@@ -7,7 +7,7 @@ class Admin::VideosController < ApplicationController
   end
 
   def create
-    category_ids = params[:video][:category_ids]
+    category_ids = params[:video][:categories]
     category_ids = category_ids[1..-1]
     @video = Video.new(video_params)
     @video.categories = Category.find(category_ids)
@@ -31,7 +31,7 @@ class Admin::VideosController < ApplicationController
   end
 
   def video_params
-    params.require(:video).permit(:title, :description, :large_cover, :small_cover)
+    params.require(:video).permit(:title, :description, :large_cover, :small_cover, :video_url)
   end
 
 end
