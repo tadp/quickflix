@@ -1,16 +1,14 @@
 %section.genre
   %header.clearfix
-    %h1 Comedies
+    %h1= @category.name
     .genre_sorting
       Sort by:
       %select(name="")
         %option(value="a-z") Title: A - Z
         %option(value="z-a") Title: Z - A
         %option(value="rating") Rating
-  -@categories.each do |category|
     %article.row
-    %h2= link_to "#{category.name}"
-    -category.videos.each do |video| 
+    -@category.videos.each do |video| 
       .video.span2
-        =link_to image_tag("/tmp/#{video.filename}.jpg"), video_path(video)
+        =link_to image_tag("#{video.small_cover}"), video_path(video)
 

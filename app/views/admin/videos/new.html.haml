@@ -7,7 +7,9 @@
             %li
               %a(href="/ui/admin_views_payments") Recent Payments
             %li.active
-              %a(href="") Add a New Video
+              =link_to "Add a New Video", new_admin_video_path
+            %li
+              = link_to "Add Categories", new_admin_category_path
           %fieldset
             = f.text_field :title, class: "span 3"
             = f.select :category_ids, options_for_select(Category.all.map {|category| [category.name, category.id]}),{},{multiple: true}
@@ -27,4 +29,5 @@
 
           %fieldset.actions.control-group
             .controls
-              %input(type="submit" value="Add Video" class="btn")
+              %input(type="submit" value="Add Video" class="btn btn-success")
+
