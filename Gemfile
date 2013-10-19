@@ -15,7 +15,8 @@ platforms :ruby do
   gem 'unicorn'
 end
 gem 'carrierwave'
-gem 'mini_magick', '3.5.0'
+gem 'mini_magick', :git => 'git://github.com/minimagick/minimagick.git', :ref => '6d0f8f953112cce6324a524d76c7e126ee14f392'
+
 
 group :assets do
   gem 'sass-rails'
@@ -28,7 +29,8 @@ end
 group :development do
   gem 'sqlite3'
   gem 'letter_opener'
-  gem 'better_errors'
+  # gem 'better_errors'
+  # gem 'binding_of_caller'
 end
 
 group :production do
