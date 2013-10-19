@@ -8,78 +8,81 @@ videos= Video.create([
   { title: 'Monk', 
     categories: [comedy, drama],
     description: 'Monk is a great show because the detective figures out the mystery.',
-    small_cover: 'monk.jpg',
-    large_cover: 'monk_large.jpg',
+    small_cover: File.open('public/uploads/monk.jpg'),
+    large_cover: File.open('public/uploads/monk_large.jpg'),
     video_url: 'http://diikjwpmj92eg.cloudfront.net/mod0/teach/Mod0-1.introduction.mp4'
     },
 
-  {title: 'Futurama', 
+  { title: 'Futurama', 
     categories: [comedy],
-    description: 'Futurama is a common comedy. Quite funny.'
-    small_cover: 'futurama.jpg',
-    large_cover: 'futurama_large.jpg',
+    description: 'Futurama is a common comedy. Quite funny.',
+    small_cover: File.open('public/uploads/futurama.jpg'),
+    large_cover: File.open('public/uploads/futurama_large.jpg'),
     video_url: 'http://diikjwpmj92eg.cloudfront.net/mod0/teach/Mod0-1.introduction.mp4'
     },
 
-  {title: 'Family Guy', 
+  { title: 'Family Guy', 
     categories: [comedy],
     description: 'Family Guy is an American adult animated sitcom created by Seth MacFarlane for the Fox Broadcasting Company. The series centers on the Griffins, a dysfunctional family consisting of parents Peter and Lois; their children Meg, Chris, and Stewie; and their anthropomorphic pet dog Brian.',
-    small_cover: 'family_guy.jpg',
-    large_cover: 'family_guy_large.jpg',
+    small_cover: File.open('public/uploads/family_guy.jpg'),
+    large_cover: File.open('public/uploads/family_guy_large.jpg'),
     video_url: 'http://diikjwpmj92eg.cloudfront.net/mod0/teach/Mod0-1.introduction.mp4'
     },
   
-  {title:'South Park',
+  { title:'South Park',
     categories: [comedy],
     description:"South Park is an American adult animated sitcom created by Trey Parker and Matt Stone for the Comedy Central television network. Intended for mature audiences, the show has become famous for its crude language and dark, surreal humor that lampoons a wide range of topics.",
-    small_cover: 'south_park.jpg',
-    large_cover: 'south_park_large.jpg',
+    small_cover: File.open('public/uploads/south_park.jpg'),
+    large_cover: File.open('public/uploads/south_park_large.jpg'),
     video_url: 'http://diikjwpmj92eg.cloudfront.net/mod0/teach/Mod0-1.introduction.mp4'
     },
   
-  {title:'Vampire Diaries',
+  { title:'Vampire Diaries',
     categories: [action, drama],
     description:'The Vampire Diaries is a supernatural drama television series developed by Kevin Williamson and Julie Plec, based on the book series of the same name written by L. J. Smith.',
-    small_cover: 'vampire_diaries.jpg',
-    large_cover: 'vampire_diaries_large.jpg',
+    small_cover: File.open('public/uploads/vampire_diaries.jpg'),
+    large_cover: File.open('public/uploads/vampire_diaries_large.jpg'),
     video_url: 'http://diikjwpmj92eg.cloudfront.net/mod0/teach/Mod0-1.introduction.mp4'
     },
   
-  {title:'Smallville', 
+  { title:'Smallville', 
     categories: [action],
     description:'Smallville is an American television series developed by writers/producers Alfred Gough and Miles Millar. It is based on the DC Comics character Superman, originally created by Jerry Siegel and Joe Shuster. ',
-    small_cover: 'smallville.jpg',
-    large_cover: 'smallville_large.jpg',
+    small_cover: File.open('public/uploads/smallville.jpg'),
+    large_cover: File.open('public/uploads/smallville_large.jpg'),
     video_url: 'http://diikjwpmj92eg.cloudfront.net/mod0/teach/Mod0-1.introduction.mp4'
     },
  
-  {title: 'How I Met Your Mother', 
+  { title: 'How I Met Your Mother', 
     categories: [comedy],
     description: "How I Met Your Mother is an American sitcom on CBS. The series follows the main character, Ted Mosby, and his group of friends in Manhattan. As a framing device, Ted, in the year 2030, recounts to his son and daughter the events that led to his meeting their mother.",
-    small_cover: 'how_i_met_your_mother.jpg',
-    large_cover: 'how_i_met_your_mother_large.jpg',
+    small_cover: File.open('public/uploads/how_i_met_your_mother.jpg'),
+    large_cover: File.open('public/uploads/how_i_met_your_mother_large.jpg'),
     video_url: 'http://diikjwpmj92eg.cloudfront.net/mod0/teach/Mod0-1.introduction.mp4'
     },
  
-  {title: 'Friends', 
+  { title: 'Friends', 
     categories: [comedy],
     description: "Friends is an American sitcom created by David Crane and Marta Kauffman, which aired on NBC from September 22, 1994 to May 6, 2004. The series revolves around a group of friends in the New York City borough of Manhattan. The series was produced by Bright/Kauffman/Crane Productions, in association with Warner Bros. Television. The original executive producers were Crane, Kauffman, and Kevin S. Bright, with numerous others being promoted in later seasons.",
-    small_cover: 'friends.jpg',
-    large_cover: 'friends_large.jpg',
+    small_cover: File.open('public/uploads/friends.jpg'),
+    large_cover: File.open('public/uploads/friends_large.jpg'),
     video_url: 'http://diikjwpmj92eg.cloudfront.net/mod0/teach/Mod0-1.introduction.mp4'
     },
  
-  {title: 'Simpsons', 
+  { title: 'Simpsons', 
     categories: [comedy],
     description: "The Simpsons is an American animated sitcom created by Matt Groening for the Fox Broadcasting Company. The series is a satirical parody of a middle class American lifestyle epitomized by its family of the same name, which consists of Homer, Marge, Bart, Lisa, and Maggie. The show is set in the fictional town of Springfield and parodies American culture, society, television, and many aspects of the human condition.",
-    small_cover: 'simpsons.jpg',
-    large_cover: 'simpsons_large.jpg',
+    small_cover: File.open('public/uploads/simpsons.jpg'),
+    large_cover: File.open('public/uploads/simpsons_large.jpg'),
     video_url: 'http://diikjwpmj92eg.cloudfront.net/mod0/teach/Mod0-1.introduction.mp4'
     }])
 
 
 
 bob = User.create(full_name: "Bob Jones", password: "password", email: "bob@example.com")
+admin = User.create(full_name: "Jon Jones", password: "password", email: "admin@example.com", admin: true)
+
+monk=Video.find_by title:'Monk'
 Review.create(user: bob, video: monk, rating: 5, content: "This is a really good show!")
 Review.create(user: bob, video: monk, rating: 3, content: "This an ok show.")
 
