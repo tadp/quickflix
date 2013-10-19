@@ -28,6 +28,7 @@ end
 group :development do
   gem 'sqlite3'
   gem 'letter_opener'
+  gem 'better_errors'
 end
 
 group :production do

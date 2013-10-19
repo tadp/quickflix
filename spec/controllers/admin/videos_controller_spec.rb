@@ -43,8 +43,8 @@ describe Admin::VideosController do
     context "with valid inputs" do
       it "redirects to the add new video page" do
         set_current_admin
-        comedy = Fabricate(:category)
-        post :create, video: { title: "Monk", categories: [comedy], description: "good show!" }
+        category = Fabricate(:category)
+        post :create, video: { title: "Monk", category_ids: [category.id], description: "good show!" }
         expect(response).to redirect_to new_admin_video_path
       end
 
@@ -52,14 +52,14 @@ describe Admin::VideosController do
         set_current_admin
         comedy = Fabricate(:category)
         # video= Fabricate(:video, categories: [comedy])
-        post :create, video: { title: "Monk", description: "good show!", categories: [comedy]} 
+        post :create, video: { title: "Monk", description: "good show!", category_ids: ["",comedy.id]} 
         expect(comedy.videos.count).to eq(1)
       end
 
       it "sets the flash success message" do
         set_current_admin
         category = Fabricate(:category)
-        post :create, video: {title: "Monk", categories: [category], description: "good show!"}
+        post :create, video: {title: "Monk", category_ids: [category.id], description: "good show!"}
         expect(flash[:success]).to be_present
       end
 
@@ -69,26 +69,26 @@ describe Admin::VideosController do
       it "does not create a video" do
         set_current_admin
         category = Fabricate(:category)
-        post :create, video: { category_id: category.id, description: "good show!" }
+        post :create, video: { category_ids: [category.id], description: "good show!" }
         expect(category.videos.count).to eq(0)
       end
       it "renders the :new template" do
         set_current_admin
         category = Fabricate(:category)
-        post :create, video: { category_id: category.id, description: "good show!" }
+        post :create, video: { category_ids: [category.id], description: "good show!" }
         expect(response).to render_template :new
       end
       it "sets the @video variable" do
         set_current_admin
         category = Fabricate(:category)
-        post :create, video: { category_id: category.id, description: "good show!" }
+        post :create, video: { category_ids: [category.id], description: "good show!" }
         expect(assigns(:video)).to be_present
       end
 
       it "sets the flash error message" do
         set_current_admin
         category = Fabricate(:category)
-        post :create, video: { category_id: category.id, description: "good show!" }
+        post :create, video: { category_ids: [category.id], description: "good show!" }
         expect(flash[:error]).to be_present
       end
     end

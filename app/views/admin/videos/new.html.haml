@@ -10,7 +10,7 @@
               %a(href="") Add a New Video
           %fieldset
             = f.text_field :title, class: "span 3"
-            = f.select :categories, options_for_select(Category.all.map {|category| [category.name, category.id]})
+            = f.select :category_ids, options_for_select(Category.all.map {|category| [category.name, category.id]}),{},{multiple: true}
             = f.text_area :description, rows: 8, class: "span6"
             = f.file_field :large_cover, class: "btn btn-file"
             = f.file_field :small_cover, class: "btn btn-file"
