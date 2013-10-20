@@ -10,6 +10,7 @@ jQuery(function($) {
   });
 });
 
+
 var stripeResponseHandler = function(status, response) {
   var $form = $('#payment-form');
   if (response.error) {
