@@ -1,3 +1,4 @@
+
 %section.register.container
   .row
     .span10.offset1
@@ -11,4 +12,5 @@
           = hidden_field_tag :invitation_token, @invitation_token
         %fieldset.actions.control-group
           .controls
-            %input(type="submit" value="Sign Up" class="btn")
+            / %input(type="submit" value="Sign Up" class="btn")
+            <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button" data-key='pk_test_OrMnS59UsvPac6LrYEKDnkfr' data-amount="2000" data-name="QuickFliX Sign Up Charge" data-description="$9.99 to sign up for the best video service" data-currency="usd"></script>

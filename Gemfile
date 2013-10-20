@@ -11,12 +11,17 @@ gem 'bcrypt-ruby', '3.0.0'
 gem 'fabrication'
 gem 'faker'
 gem 'factory_girl_rails'
+gem 'jquery-rails'
+
 platforms :ruby do
   gem 'unicorn'
 end
+gem 'sidekiq'
 gem 'carrierwave'
 gem 'mini_magick', :git => 'git://github.com/minimagick/minimagick.git', :ref => '6d0f8f953112cce6324a524d76c7e126ee14f392'
-gem 'sidekiq'
+
+gem 'stripe'
+gem 'figaro'
 
 group :assets do
   gem 'sass-rails'
@@ -41,8 +46,6 @@ group :production do
   gem 'slim'
   gem 'fog'
 end
-
-gem 'jquery-rails'
 
 group :test do
   gem 'shoulda-matchers'
