@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     Stripe.api_key = "sk_test_XmIuuQNe86jvJdgBj4z4zlOS"
     begin
       charge = Stripe::Charge.create(
-        :amount => 999, # amount in cents, again
+        :amount => 1000, # amount in cents, again
         :currency => "usd",
         :card => params[:stripeToken],
         :description => "Sign up charge for #{@user.email}"
