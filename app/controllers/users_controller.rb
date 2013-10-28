@@ -9,6 +9,8 @@ class UsersController < ApplicationController
   body = "Welcome"
   if @user.save
     handle_invitation
+
+    
     Stripe.api_key = "sk_test_XmIuuQNe86jvJdgBj4z4zlOS"
     begin
       charge = Stripe::Charge.create(
@@ -20,6 +22,11 @@ class UsersController < ApplicationController
       rescue Stripe::CardError => e
         # The card has been declined
     end
+
+    StripeWrapper::Charge.create(
+
+      )
+
 	  AppMailer.delay.send_welcome_email(@user,body)
     flash[:success] = "You just registered!"
     redirect_to login_path
