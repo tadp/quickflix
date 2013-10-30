@@ -54,6 +54,8 @@ group :test do
   gem 'capybara-email'
   gem 'vcr'
   gem 'webmock', '1.11.0'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
 end
 
 group :test, :development do
