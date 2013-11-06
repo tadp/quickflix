@@ -57,7 +57,9 @@ RSpec.configure do |config|
   #so we can use :vcr rather than :vcr => true. Not necessary in rspec 3
   config.treat_symbols_as_metadata_keys_with_true_values = true
 
-
+  #mod 13.2
+  #http://devblog.avdi.org/2012/08/31/configuring-database_cleaner-with-rails-rspec-capybara-and-selenium/
+  
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
   end
