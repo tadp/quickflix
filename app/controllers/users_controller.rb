@@ -8,12 +8,12 @@ class UsersController < ApplicationController
   @user = User.new(user_params)
   body = "Welcome"
   if @user.valid?
-    Stripe.api_key = ENV['STRIPE_SECRET_KEY']
-    charge = StripeWrapper::Charge.create(
-    :amount => 999, # amount in cents
-    :card => params[:stripeToken],
-    :description => "Sign up charge for #{@user.email}"
-    )
+    charge = StripeWrapper::Charge.create( 
+      :amount => 999, 
+      :card => params[:stripeToken], 
+      :description => "Sign up charge for #{@user.email}"
+      )
+
     if charge.successful?
       @user.save
       handle_invitation
@@ -49,7 +49,7 @@ class UsersController < ApplicationController
 
 private
   def user_params
-    params.require(:user).permit(:email, :password, :full_name)
+    params.require(:user).permit(:email, :password, :full_name, :stripeToken,:invitation_token)
   end
 
   def handle_invitation

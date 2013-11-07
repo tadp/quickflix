@@ -35,6 +35,7 @@ feature 'User invites a friend' do
   end
 
   def friend_signs_in
+    save_and_open_page
     fill_in "Email Address", with: "john@example.com"
     fill_in "Password", with: "password"
     click_button "Sign in"
