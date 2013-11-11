@@ -10,6 +10,7 @@ describe UsersController do
   
 describe "POST create" do
   context "with valid personal info and card input" do
+    after { ActionMailer::Base.deliveries.clear }
     let(:charge) { double(:charge, successful?: true)}
     before do
       StripeWrapper::Charge.should_receive(:create).and_return(charge)
@@ -70,6 +71,7 @@ describe "POST create" do
   end
 
   context "with invalid personal info" do
+    after { ActionMailer::Base.deliveries.clear }
     before do
      post :create, user: { email: "test@example.com", full_name: "Bob Jones" }
     end

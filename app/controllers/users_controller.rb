@@ -13,19 +13,18 @@ class UsersController < ApplicationController
       :card => params[:stripeToken], 
       :description => "Sign up charge for #{@user.email}"
       )
-
     if charge.successful?
       @user.save
       handle_invitation
 	    AppMailer.delay.send_welcome_email(@user,body)
-      flash[:success] = "You just registered!"
+      flash[:success] = "Thank you for registering!"
       redirect_to login_path
     else
       flash[:error] = charge.error_message
       render :new
     end
   else
-    flash[:error] = @user.errors.full_messages.join(', ')
+    flash[:error] = "Invalid user information. Please check the errors below."
     render :new
   end
  end

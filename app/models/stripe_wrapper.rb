@@ -15,10 +15,10 @@ module StripeWrapper
           card: options[:card],
           description: options[:description]
           )
-        new(options[:response] = response)
+        new(response: response)
       rescue Stripe::CardError => e
-        new(options[:error_message] = e.message)
-        # named arguments only work in Ruby 2.0
+        new(error_message: e.message)
+        # named arguments only work in Ruby 2.0?
         # new(error_message: e.message)
       end
     end
