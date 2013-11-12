@@ -1,7 +1,8 @@
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
-Stripe.setPublishableKey("pk_test_OrMnS59UsvPac6LrYEKDnkfr");
+Stripe.setPublishableKey("pk_test_OrMnS59UsvPac6LrYEKDnkfr")
 </script>
+
 = javascript_include_tag 'payment'
 
 
@@ -19,13 +20,13 @@ Stripe.setPublishableKey("pk_test_OrMnS59UsvPac6LrYEKDnkfr");
         %fieldset.credit_card
           %span.payment-errors
           .control-group
-            %label.control-label Credit Card Number
+            %label.control-label(for="credit-card-number") Credit Card Number
             .controls
-              %input.span3(type="text" data-stripe="number")
+              %input.span3#credit-card-number(type="text" data-stripe="number")
           .control-group
-            %label.control-label Security Code
+            %label.control-label(for="security-code") Security Code
             .controls
-              %input.span3(type="text" data-stripe="cvc")
+              %input.span3#security-code(type="text" data-stripe="cvc")
           .control-group
             %label.control-label Expiration
             .controls

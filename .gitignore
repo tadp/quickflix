@@ -17,3 +17,9 @@
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore application configuration
+/config/application.yml
+
+# Ignore VCR cassettes
+/vcr_cassettes

@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/charges
+    body:
+      encoding: US-ASCII
+      string: amount=999&currency=usd&card=tok_102udJ2RG5h2YQBOIqvXXaEo&description=Sign%20up%20charge%20for%20john%40example.com
+    headers:
+      Accept:
+      - ! '*/*; q=0.5, application/xml'
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Stripe/v1 RubyBindings/1.8.8
+      Authorization:
+      - Bearer sk_test_XmIuuQNe86jvJdgBj4z4zlOS
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - ! '{"bindings_version":"1.8.8","lang":"ruby","lang_version":"1.9.3 p429 (2013-05-15)","platform":"i386-mingw32","publisher":"stripe","uname":null}'
+      Content-Length:
+      - '115'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 10 Nov 2013 02:33:44 GMT
+      Content-Type:
+      - application/json;charset=utf-8
+      Content-Length:
+      - '1000'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Max-Age:
+      - '300'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+    body:
+      encoding: US-ASCII
+      string: ! "{\n  \"id\": \"ch_102udJ2RG5h2YQBOcWltrjVv\",\n  \"object\": \"charge\",\n
+        \ \"created\": 1384050824,\n  \"livemode\": false,\n  \"paid\": true,\n  \"amount\":
+        999,\n  \"currency\": \"usd\",\n  \"refunded\": false,\n  \"card\": {\n    \"id\":
+        \"card_102udJ2RG5h2YQBOYmKo6cMi\",\n    \"object\": \"card\",\n    \"last4\":
+        \"4242\",\n    \"type\": \"Visa\",\n    \"exp_month\": 7,\n    \"exp_year\":
+        2015,\n    \"fingerprint\": \"s8iT9BUR4LQPxvYs\",\n    \"customer\": null,\n
+        \   \"country\": \"US\",\n    \"name\": null,\n    \"address_line1\": null,\n
+        \   \"address_line2\": null,\n    \"address_city\": null,\n    \"address_state\":
+        null,\n    \"address_zip\": null,\n    \"address_country\": null,\n    \"cvc_check\":
+        \"pass\",\n    \"address_line1_check\": null,\n    \"address_zip_check\":
+        null\n  },\n  \"captured\": true,\n  \"refunds\": [],\n  \"balance_transaction\":
+        \"txn_102udJ2RG5h2YQBOY2865Io0\",\n  \"failure_message\": null,\n  \"failure_code\":
+        null,\n  \"amount_refunded\": 0,\n  \"customer\": null,\n  \"invoice\": null,\n
+        \ \"description\": \"Sign up charge for john@example.com\",\n  \"dispute\":
+        null,\n  \"metadata\": {}\n}\n"
+    http_version: 
+  recorded_at: Sun, 10 Nov 2013 02:33:39 GMT
+recorded_with: VCR 2.6.0

@@ -176,7 +176,11 @@ describe QueueItemsController do
       end
 
       it "does not change the queue items" do
-        post :update_queue, queue_items: [{id: queue_item1.id, list_order: 3}, {id: queue_item2.id, list_order: 2.1}]
+        alice = Fabricate(:user)
+        video = Fabricate(:video)
+        queue_item1 = Fabricate(:queue_item, user: alice, video: video, list_order: 1)
+        queue_item2 = Fabricate(:queue_item, user: alice, video: video, list_order: 2)
+        post :update_queue, queue_items: [{id: queue_item1.id, list_order: 3}, {id: queue_item2.id, list_order: 2.5}]
         expect(alice.queue_items).to eq([queue_item1, queue_item2])
       end
 
