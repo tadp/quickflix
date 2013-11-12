@@ -16,7 +16,8 @@ feature "User Registers", {js: true, vcr: true} do
     fill_in_valid_user_info
     fill_in_invalid_card
     click_button "Sign Up"
-    expect(page).to have_content("This card number l 
+    expect(page).to have_content("This card number looks invalid")
+  end
 
   scenario "with valid user info and declined card" do
     fill_in_valid_user_info
