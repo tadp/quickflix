@@ -6,7 +6,7 @@
       .video_info.span3
         %header
           %h3= @video.title
-          %span Average Rating: #{@video.average_rating.to_s}/5.0
+          %span Average Rating: #{@video.rating}
         %p= @video.description
         .actions
           %a.btn.btn-primary(href="#{@video.video_url}") Watch Now

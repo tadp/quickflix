@@ -7,17 +7,8 @@ class VideosController < ApplicationController
     @video_results=Video.search_by_title(params[:search_term])
   end
 
-  # def create
-  # end
-
-  # def register
-  # end
-
-  # def sign_in
-  # end
-
   def show
-    @video=Video.find(params[:id])
+    @video=VideoDecorator.decorate(Video.find(params[:id]))
     @reviews= @video.reviews
   end
 
