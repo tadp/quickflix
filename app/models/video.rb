@@ -34,15 +34,9 @@ class Video < ActiveRecord::Base
     # find(:all)
     # end
   end
-
+  
   def average_rating
-    if reviews.any?
-      sum= reviews.map{ |n| n.rating}.inject(:+)
-      average = (sum.to_f / reviews.count).round(1)
-    else
-      0.0
-    end
+    sum= reviews.map{ |n| n.rating}.inject(:+)
+    average = (sum.to_f / reviews.count).round(1)
   end
-
-
 end
