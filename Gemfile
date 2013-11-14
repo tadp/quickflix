@@ -12,6 +12,7 @@ gem 'fabrication'
 gem 'faker'
 gem 'factory_girl_rails'
 gem 'jquery-rails'
+gem 'draper'
 
 platforms :ruby do
   gem 'unicorn'
