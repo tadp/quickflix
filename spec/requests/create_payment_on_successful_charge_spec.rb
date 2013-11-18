@@ -1,88 +1,59 @@
 require 'spec_helper'
 
-describe "Create payment on successful charge" do
+describe "Create payment on successful charge", :vcr do
   let(:event_data) do
-    {
-  "id" => "evt_102wnS2RG5h2YQBOkaPc5W7Q",
-  "created" => 1384549862,
+{
+  "id" => "evt_102xfU2RG5h2YQBO07rf5IK1",
+  "created" => 1384750844,
   "livemode" => false,
-  "type" => "customer.created",
+  "type" => "charge.succeeded",
   "data" => {
     "object" => {
-      "object" => "customer",
-      "created" => 1384549861,
-      "id" => "cus_2wnSCR8RTaVr7r",
+      "id" => "ch_102xfU2RG5h2YQBOvR97do3h",
+      "object" => "charge",
+      "created" => 1384750844,
       "livemode" => false,
+      "paid" => true,
+      "amount" => 999,
+      "currency" => "usd",
+      "refunded" => false,
+      "card" => {
+        "id" => "card_102xfU2RG5h2YQBOJV5KzNQ4",
+        "object" => "card",
+        "last4" => "4242",
+        "type" => "Visa",
+        "exp_month" => 10,
+        "exp_year" => 2014,
+        "fingerprint" => "s8iT9BUR4LQPxvYs",
+        "customer" => "cus_2xfUxJLI6oZ0XG",
+        "country" => "US",
+        "name" => nil,
+        "address_line1" => nil,
+        "address_line2" => nil,
+        "address_city" => nil,
+        "address_state" => nil,
+        "address_zip" => nil,
+        "address_country" => nil,
+        "cvc_check" => "pass",
+        "address_line1_check" => nil,
+        "address_zip_check" => nil
+      },
+      "captured" => true,
+      "refunds" => [],
+      "balance_transaction" => "txn_102xfU2RG5h2YQBOQfp0Eqx8",
+      "failure_message" => nil,
+      "failure_code" => nil,
+      "amount_refunded" => 0,
+      "customer" => "cus_2xfUxJLI6oZ0XG",
+      "invoice" => "in_102xfU2RG5h2YQBOJJdsnjMf",
       "description" => nil,
-      "email" => "johndoe2@example.com",
-      "delinquent" => false,
-      "metadata" => {
-      },
-      "subscription" => {
-        "id" => "sub_2wnS5c6zJBHk6M",
-        "plan" => {
-          "interval" => "month",
-          "name" => "The Standard Plan",
-          "amount" => 999,
-          "currency" => "usd",
-          "id" => "standard",
-          "object" => "plan",
-          "livemode" => false,
-          "interval_count" => 1,
-          "trial_period_days" => nil,
-          "metadata" => {
-          }
-        },
-        "object" => "subscription",
-        "start" => 1384549861,
-        "status" => "active",
-        "customer" => "cus_2wnSCR8RTaVr7r",
-        "cancel_at_period_end" => false,
-        "current_period_start" => 1384549861,
-        "current_period_end" => 1387141861,
-        "ended_at" => nil,
-        "trial_start" => nil,
-        "trial_end" => nil,
-        "canceled_at" => nil,
-        "quantity" => 1,
-        "application_fee_percent" => nil
-      },
-      "discount" => nil,
-      "account_balance" => 0,
-      "cards" => {
-        "object" => "list",
-        "count" => 1,
-        "url" => "/v1/customers/cus_2wnSCR8RTaVr7r/cards",
-        "data" => [
-          {
-            "id" => "card_102wnS2RG5h2YQBOx0z8JjXB",
-            "object" => "card",
-            "last4" => "4242",
-            "type" => "Visa",
-            "exp_month" => 11,
-            "exp_year" => 2015,
-            "fingerprint" => "s8iT9BUR4LQPxvYs",
-            "customer" => "cus_2wnSCR8RTaVr7r",
-            "country" => "US",
-            "name" => nil,
-            "address_line1" => nil,
-            "address_line2" => nil,
-            "address_city" => nil,
-            "address_state" => nil,
-            "address_zip" => nil,
-            "address_country" => nil,
-            "cvc_check" => "pass",
-            "address_line1_check" => nil,
-            "address_zip_check" => nil
-          }
-        ]
-      },
-      "default_card" => "card_102wnS2RG5h2YQBOx0z8JjXB"
+      "dispute" => nil,
+      "metadata" => {}
     }
   },
   "object" => "event",
   "pending_webhooks" => 1,
-  "request" => "iar_2wnSh6vFvPC69Z"
+  "request" => "iar_2xfUZcPj9xCokp"
 }
   end
 
@@ -92,21 +63,21 @@ describe "Create payment on successful charge" do
   end
 
   it "creates the payment associated with user", :vcr do
-    alice = Fabricate(:user, customer_token: 'cus_2wnSCR8RTaVr7r')
+    alice = Fabricate(:user, customer_token: 'cus_2xfUxJLI6oZ0XG')
     post "/stripe_events", event_data
     expect(Payment.first.user).to eq(alice)
   end
 
   it "creates the payment with the amount", :vcr do
-    alice = Fabricate(:user, customer_token: 'cus_2wnSCR8RTaVr7r')
+    alice = Fabricate(:user, customer_token: 'cus_2xfUxJLI6oZ0XG')
     post "/stripe_events", event_data
     expect(Payment.first.amount).to eq(999)
   end
 
   it "creates the payment with reference id", :vcr do
-    alice = Fabricate(:user, customer_token: 'cus_2wnSCR8RTaVr7r')
+    alice = Fabricate(:user, customer_token: 'cus_2xfUxJLI6oZ0XG')
     post "/stripe_events", event_data
-    expect(Payment.first.reference_id).to eq('sub_2wnS5c6zJBHk6M')
+    expect(Payment.first.reference_id).to eq('ch_102xfU2RG5h2YQBOvR97do3h')
   end
 
 end

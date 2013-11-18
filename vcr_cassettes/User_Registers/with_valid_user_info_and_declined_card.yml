@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.stripe.com/v1/customers
     body:
       encoding: US-ASCII
-      string: card=tok_102wYn2RG5h2YQBOH92XhpMj&email=john%40example.com&plan=standard
+      string: card=tok_102xgw2RG5h2YQBOc8dHqGTp&email=john%40example.com&plan=standard
     headers:
       Accept:
       - ! '*/*; q=0.5, application/xml'
@@ -29,7 +29,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 15 Nov 2013 06:01:43 GMT
+      - Mon, 18 Nov 2013 06:30:59 GMT
       Content-Type:
       - application/json;charset=utf-8
       Content-Length:
@@ -49,5 +49,5 @@ http_interactions:
       string: ! "{\n  \"error\": {\n    \"message\": \"Your card was declined.\",\n
         \   \"type\": \"card_error\",\n    \"code\": \"card_declined\"\n  }\n}\n"
     http_version: 
-  recorded_at: Fri, 15 Nov 2013 06:01:41 GMT
+  recorded_at: Mon, 18 Nov 2013 06:30:55 GMT
 recorded_with: VCR 2.6.0

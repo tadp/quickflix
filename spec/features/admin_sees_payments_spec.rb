@@ -3,7 +3,7 @@ require 'spec_helper'
 feature "Admin sees payments" do
   background do
     alice = Fabricate(:user, full_name: "Alice Doe", email: "alice@example.com")
-    Fabricate(:payment, amount: 999)
+    Fabricate(:payment, amount: 999, user: alice)
   end
 
   scenario "admin can see payments" do
