@@ -10,10 +10,21 @@ class UserSignup
     if @user.valid?
       customer = StripeWrapper::Customer.create( 
         :user => @user, 
-        :card => stripe_token, 
+        :card => stripe_token,
         )
+
       if customer.successful?
         @user.customer_token = customer.customer_token
+        
+        unless Rails.env == "test"
+          @user.plan = customer.response.subscription.plan.name
+          @user.plan_amount = customer.response.subscription.plan.amount
+          @user.billing_interval =customer.response.subscription.plan.interval
+          @user.delinquent = customer.response.delinquent
+          @user.period_start = customer.response.subscription.current_period_start
+          @user.period_end = customer.response.subscription.current_period_end
+        end
+
         @user.save
         handle_invitation(invitation_token)
         AppMailer.delay.send_welcome_email(@user,body)

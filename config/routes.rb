@@ -26,6 +26,7 @@ Myflix::Application.routes.draw do
   get '/login', to: 'sessions#new'
   get '/logout', to: 'sessions#destroy'
   get '/my_queue', to: 'queue_items#index'
+  get '/payments', to: 'bills#index'
 
   #mod 11.1 namespacing
   namespace :admin do

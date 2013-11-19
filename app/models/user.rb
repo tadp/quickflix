@@ -45,4 +45,8 @@ class User < ActiveRecord::Base
   #   self.token = SecureRandom.urlsafe_base64
   # end
 
+  def deactivate!
+    update_column(:active, false)
+  end
+
 end

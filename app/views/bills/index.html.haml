@@ -1,0 +1,38 @@
+%section.billing.container
+  .row
+    .span10.offset1
+      .plan_and_payments
+        %section.plan
+          %header
+            %h1 Billing
+          %table.table
+            %thead
+              %tr
+                %th Plan
+                %th Next Billing Date
+                %th Price
+            %tbody
+              %tr
+                %td= @customer.plan
+                %td= Time.at(@customer.period_end).strftime('%b %e, %Y') 
+                %td= "#{number_to_currency(@customer.plan_amount.to_f/100)} per #{@customer.billing_interval}"
+
+        /= button_to "Cancel Service", nil, class: "btn"
+
+        %section.payment_history
+          %header
+            %h3 Payment History
+          %table.table
+            %thead
+              %tr
+                %th Date
+                %th Service Duration
+                %th Total
+                %th Status
+            %tbody
+              - @payments.each do |payment|
+                %tr
+                  %td= Time.at(payment.period_start).strftime('%b %e, %Y')  
+                  %td= "#{Time.at(payment.period_start).strftime('%b %e, %Y') } - #{Time.at(payment.period_end).strftime('%b %e, %Y') }"
+                  %td= number_to_currency((payment.amount.to_f/100))
+                  %td= "#{payment.paid ? 'Paid' : 'Not Paid'}"

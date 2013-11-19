@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131115214444) do
+ActiveRecord::Schema.define(version: 20131118220935) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -35,6 +35,9 @@ ActiveRecord::Schema.define(version: 20131115214444) do
     t.string   "reference_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "period_start"
+    t.integer  "period_end"
+    t.boolean  "paid",         default: false
   end
 
   create_table "queue_items", force: true do |t|
@@ -70,6 +73,13 @@ ActiveRecord::Schema.define(version: 20131115214444) do
     t.string   "token"
     t.boolean  "admin"
     t.string   "customer_token"
+    t.boolean  "active",           default: true
+    t.string   "plan"
+    t.integer  "plan_amount"
+    t.string   "billing_interval"
+    t.boolean  "delinquent",       default: false
+    t.integer  "period_start"
+    t.integer  "period_end"
   end
 
   create_table "video_categories", force: true do |t|
