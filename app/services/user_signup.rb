@@ -8,14 +8,14 @@ class UserSignup
   def sign_up(stripe_token,invitation_token)
     body = "Welcome"
     if @user.valid?
-      customer = StripeWrapper::Customer.create( 
-        :user => @user, 
+      customer = StripeWrapper::Customer.create(
+        :user => @user,
         :card => stripe_token,
         )
 
       if customer.successful?
         @user.customer_token = customer.customer_token
-        
+
         unless Rails.env == "test"
           @user.plan = customer.response.subscription.plan.name
           @user.plan_amount = customer.response.subscription.plan.amount
