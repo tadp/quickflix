@@ -26,11 +26,14 @@ Myflix::Application.routes.draw do
   get '/login', to: 'sessions#new'
   get '/logout', to: 'sessions#destroy'
   get '/my_queue', to: 'queue_items#index'
+  get '/payments', to: 'bills#index'
+  post '/payments', to: 'bills#destroy'
 
   #mod 11.1 namespacing
   namespace :admin do
     resources :videos, only: [:new, :create]
     resources :categories, only: [:new, :create]
+    resources :payments, only: [:index]
   end
 
   # Forgot passwords is a virtual resource mod8
@@ -41,10 +44,13 @@ Myflix::Application.routes.draw do
   resources :password_resets, only: [:show, :create]
   get 'expired_token', to: 'pages#expired_token'
 
-  resources :users, only: [:create, :show]
+
+  resources :users, only: [:create, :show, :edit, :update]
   resources :sessions, only: [:create]
 
   resources :invitations, only: [:new, :create]
 
   mount Sidekiq::Web, at: "/sidekiq"
+
+  mount StripeEvent::Engine => '/stripe_events'
 end

@@ -22,7 +22,7 @@
             %b.caret
           %ul.dropdown-menu(role="menu" aria-labelledby="dlabel")
             %li
-              %a(href="#") Account
-              %a(href="#") Plan and Billing
+              = link_to "Account", edit_user_path(current_user.id)
+              = link_to "Plan and Billing", payments_path
               = link_to "Invite a Friend", new_invitation_path
               = link_to "Sign Out", logout_path

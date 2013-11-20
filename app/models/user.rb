@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :following_relationships, class_name: "Relationship", foreign_key: :follower_id
   has_many :leading_relationships, class_name: "Relationship", foreign_key: :leader_id
   has_many :invitations
+  has_many :payments
 
   validates_presence_of :email, :password, :full_name
   validates_uniqueness_of :email
@@ -43,5 +44,9 @@ class User < ActiveRecord::Base
   # def generate_token
   #   self.token = SecureRandom.urlsafe_base64
   # end
+
+  def deactivate!
+    update_column(:active, false)
+  end
 
 end

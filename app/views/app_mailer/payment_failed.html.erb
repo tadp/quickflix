@@ -1,0 +1,14 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Your MyFLiX Payment Failed</h1>
+    <p> <%= @user.full_name %>, there was a problem charging your card for MyFLiX subscription. Please update your payment information: </p>
+    <p><%= link_to "MyFLiX Plan & Billing", payments_path %></p>
+    <p>Thanks,</p>
+    <p> - MyFLiX</p>
+  </body>
+</html>
