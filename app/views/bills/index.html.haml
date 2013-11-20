@@ -17,7 +17,7 @@
                 %td= Time.at(@customer.period_end).strftime('%b %e, %Y') 
                 %td= "#{number_to_currency(@customer.plan_amount.to_f/100)} per #{@customer.billing_interval}"
 
-        /= button_to "Cancel Service", nil, class: "btn"
+        = button_to "Cancel Service", nil, class: "btn"
 
         %section.payment_history
           %header

@@ -51,7 +51,10 @@ module StripeWrapper
       end
     end
 
-
+    def self.destroy(options={})
+      cu = Stripe::Customer.retrieve(options[:customer_token])
+      cu.cancel_subscription
+    end
 
     def successful?
       response.present?
