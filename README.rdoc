@@ -23,7 +23,7 @@ Login as Admin or Registering a test user:
 
 I started from a mock-up made of simple html templates since the main purpose was to go deep into Rails and testing best practices. All content was replaced with my own data and every Rails route, Controller, and Model, Service Object, Decorator, Mock and spec was created from scratch.
 
- "Growing Object-Oriented Software Guided by Tests"(GOOS) recommends creating a workable "skeleton" before layering on tests.  I used a "Meet in the Middle" TDD approach during development process. I used shoulda-matchers for model tests, controller tests to guard the controllers and feature specs in Capybara for integration tests that spanned the model, controller and view. I submitted each feature branch for review through a pull request before it was integrated into master to make sure that master was continuously deployable. Along with learning best practices, I aimed to add features seen in other enterprise level web apps such as:
+"Growing Object-Oriented Software Guided by Tests"(GOOS) recommends creating a workable "skeleton" before layering on tests.  I used a "Meet in the Middle" TDD approach during development process. I used shoulda-matchers for model tests, controller tests to guard the controllers and feature specs in Capybara for integration tests that spanned the model, controller and view. I submitted each feature branch for review through a pull request before it was integrated into master to make sure that master was continuously deployable. Along with learning best practices, I aimed to add features seen in other enterprise level web apps such as:
 
 * AWS S3 - To serve Static Assets
 * Stripe for Payment/Subscription Processing
