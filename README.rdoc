@@ -57,7 +57,7 @@ I started from a mock-up made of simple html templates since the main purpose wa
 
 == Testing
 
-These are different testing frameworks learned:
+These are some of the different testing frameworks learned:
 
   |-- RSPEC
   |     |-- VCR
