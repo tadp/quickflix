@@ -30,9 +30,10 @@
                 %th Total
                 %th Status
             %tbody
-              - @payments.each do |payment|
-                %tr
-                  %td= Time.at(payment.period_start).strftime('%b %e, %Y')  
-                  %td= "#{Time.at(payment.period_start).strftime('%b %e, %Y') } - #{Time.at(payment.period_end).strftime('%b %e, %Y') }"
-                  %td= number_to_currency((payment.amount.to_f/100))
-                  %td= "#{payment.paid ? 'Paid' : 'Not Paid'}"
+              - unless @payments
+                - @payments.each do |payment|
+                  %tr
+                    %td= Time.at(payment.period_start).strftime('%b %e, %Y')  
+                    %td= "#{Time.at(payment.period_start).strftime('%b %e, %Y') } - #{Time.at(payment.period_end).strftime('%b %e, %Y') }"
+                    %td= number_to_currency((payment.amount.to_f/100))
+                    %td= "#{payment.paid ? 'Paid' : 'Not Paid'}"
