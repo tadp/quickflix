@@ -53,3 +53,23 @@ I started from a mock-up made of simple html templates since the main purpose wa
 - AWS S3: Hosting static assets
 - Mailgun - API Keys for SMTP Server
 
+
+
+== Testing
+
+These are different testing frameworks learned:
+
+  |-- RSPEC
+  |     |-- VCR
+  |-- Cucumber
+  |-- FactoryGirl/Fabricator
+  |   |-- shoulda matchers
+  |-- Capybara, Capybara-email
+  |  |-- webmock
+  |  |-- selenium webdriver
+  |  |-- database_cleaner
+
+
+
+
+
