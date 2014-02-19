@@ -1,153 +1,55 @@
-== Welcome to MyFlix
+== QuickFlix
 
-This application will mimic the functionality of Netflix.
+This is a demo application that mimics the functionality of Netflix. It is a non-trivial e-commerce application that aims to reflect the best practices and workflows of experienced developers.  This app has the following features:
 
+* Full payment processing
+* Account management
+* Administration capabilities
 
+Users are able to create an account, authenticate, invite friends, reset their password and select videos to add to a queue.
 
+Admins are able to upload images that are served through Amazon S3 and see past payments through a Stripe webhook JSON request.
 
+**Demo:** [http://quickflix.herokuapp.com/](http://quickflix.herokuapp.com/)
 
-Sample markdown script:
+**Source:** [https://github.com/tadp/quickflix](https://github.com/tadp/quickflix)
 
-============================================= Getting Started
+Login as Admin or Registering a test user:
 
-1. At the command prompt, create a new Rails application:
-       <tt>rails new myapp</tt> (where <tt>myapp</tt> is the application name)
+* Register as test user: Use CC#: 4242424242424242, CVC: 123
+* Login as Admin: email: 'bob@example.com', pw: 'password'
 
-2. Change directory to <tt>myapp</tt> and start the web server:
-       <tt>cd myapp; rails server</tt> (run with --help for options)
+**Goals**
 
+I started from a mock-up made of simple html templates since the main purpose was to go deep into Rails and testing best practices. All content was replaced with my own data and every Rails route, Controller, and Model, Service Object, Decorator, Mock and spec was created from scratch.
 
+ "Growing Object-Oriented Software Guided by Tests"(GOOS) recommends creating a workable "skeleton" before layering on tests.  I used a "Meet in the Middle" TDD approach during development process. I used shoulda-matchers for model tests, controller tests to guard the controllers and feature specs in Capybara for integration tests that spanned the model, controller and view. I submitted each feature branch for review through a pull request before it was integrated into master to make sure that master was continuously deployable. Along with learning best practices, I aimed to add features seen in other enterprise level web apps such as:
 
-This pattern splits the view (also called the presentation) into "dumb"
-templates that are primarily responsible for inserting pre-built data in between
-HTML tags. The model contains the "smart" domain objects (such as Account,
-Product, Person, Post) that holds all the business logic and knows how to
-persist themselves to a database. The controller handles the incoming requests
-(such as Save New Account, Update Product, Show Post) by manipulating the model
-and directing data to the view.
-
-In Rails, the model is handled by what's called an object-relational mapping
-layer entitled Active Record. This layer allows you to present the data from
-database rows as objects and embellish these data objects with business logic
-methods. You can read more about Active Record in
-link:files/vendor/rails/activerecord/README.html.
-
-The controller and view are handled by the Action Pack, which handles both
-layers by its two parts: Action View and Action Controller. These two layers
-are bundled in a single package due to their heavy interdependence. This is
-unlike the relationship between the Active Record and Action Pack that is much
-more separate. Each of these packages can be used independently outside of
-Rails. You can read more about Action Pack in
-link:files/vendor/rails/actionpack/README.html.
-
-  class WeblogController < ActionController::Base
-    def destroy
-      @weblog = Weblog.find(params[:id])
-      @weblog.destroy
-      logger.info("#{Time.now} Destroyed Weblog ID ##{@weblog.id}!")
-    end
-  end
-
-The result will be a message in your log file along the lines of:
-
-  Mon Oct 08 14:22:29 +1000 2007 Destroyed Weblog ID #1!
-
-More information on how to use the logger is at http://www.ruby-doc.org/core/
-
-Also, Ruby documentation can be found at http://www.ruby-lang.org/. There are
-several books available online as well:
-
-* Programming Ruby: http://www.ruby-doc.org/docs/ProgrammingRuby/ (Pickaxe)
-* Learn to Program: http://pine.fm/LearnToProgram/ (a beginners guide)
-
-These two books will bring you up to speed on the Ruby language and also on
-programming in general.
+* AWS S3 - To serve Static Assets
+* Stripe for Payment/Subscription Processing
+* Implementing a queue for users to track videos using transactions 
+* Delayed jobs(Sidekiq/Resque/Redis) to push non-critical actions into the background asynchronously, making the app more responsive and able to scale to many users
+* Added social features, where users can 'follow' other users.
+* Tokens to anonymize data using MD5 hashing, Reset password feature, Invite a friend to Sign-up)
+* Admin Section - To add more videos
+* 3rd Party SMTP Integration - Mailgun to deploy System Email notifications
+* Along with best Practices, like (Skinny Controller, Fat Models)
 
 
-== Debugger
+**Installation**
 
-Debugger support is available through the debugger command when you start your
-Mongrel or WEBrick server with --debugger. This means that you can break out of
-execution at any point in the code, investigate and change the model, and then,
-resume execution! You need to install ruby-debug to run the server in debugging
-mode. With gems, use <tt>sudo gem install ruby-debug</tt>. Example:
+  git clone git@github.com:tadp/quickflix.git
+  cd quickflix
+  bundle install
+  rake db:migrate db:seed
+  rails s
 
-  class WeblogController < ActionController::Base
-    def index
-      @posts = Post.all
-      debugger
-    end
-  end
+**External Dependencies**
 
-So the controller will accept the action, run the first line, then present you
-with a IRB prompt in the server window. Here you can do things like:
-
-  >> @posts.inspect
-  => "[#<Post:0x14a6be8
-          @attributes={"title"=>nil, "body"=>nil, "id"=>"1"}>,
-       #<Post:0x14a6620
-          @attributes={"title"=>"Rails", "body"=>"Only ten..", "id"=>"2"}>]"
-  >> @posts.first.title = "hello from a debugger"
-  => "hello from a debugger"
-
-...and even better, you can examine how your runtime objects actually work:
-
-  >> f = @posts.first
-  => #<Post:0x13630c4 @attributes={"title"=>nil, "body"=>nil, "id"=>"1"}>
-  >> f.
-  Display all 152 possibilities? (y or n)
-
-Finally, when you're ready to resume execution, you can enter "cont".
-
-
-== Console
-
-The console is a Ruby shell, which allows you to interact with your
-application's domain model. Here you'll have all parts of the application
-configured, just like it is when the application is running. You can inspect
-domain models, change values, and save to the database. Starting the script
-without arguments will launch it in the development environment.
-
-To start the console, run <tt>rails console</tt> from the application
-directory.
-
-Options:
-
-* Passing the <tt>-s, --sandbox</tt> argument will rollback any modifications
-  made to the database.
-* Passing an environment name as an argument will load the corresponding
-  environment. Example: <tt>rails console production</tt>.
-
-To reload your controllers and models after launching the console run
-<tt>reload!</tt>
-
-More information about irb can be found at:
-link:http://www.rubycentral.org/pickaxe/irb.html
-
-
-== dbconsole
-
-You can go to the command line of your database directly through <tt>rails
-dbconsole</tt>. You would be connected to the database with the credentials
-defined in database.yml. Starting the script without arguments will connect you
-to the development database. Passing an argument will connect you to a different
-database, like <tt>rails dbconsole production</tt>. Currently works for MySQL,
-PostgreSQL and SQLite 3.
-
-== Description of Contents
-
-The default directory structure of a generated Ruby on Rails application:
-
-  |-- app
-  |   |-- assets
-  |       |-- images
-  |       |-- javascripts
-  |       `-- stylesheets
-  |   |-- controllers
-  |   |-- helpers
-  |   |-- mailers
-  |   |-- models
-
-
-
+- sqlite: for local development, postgres in production
+- redis:  background processing for email notification
+- smtp server: Sending out emails
+- Stripe: API Keys for handling payments
+- AWS S3: Hosting static assets
+- Mailgun - API Keys for SMTP Server
 
